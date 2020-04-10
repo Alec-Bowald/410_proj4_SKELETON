@@ -14,9 +14,11 @@ Waiter::~Waiter()
 
 //gets next Order(s) from file_IO
 int Waiter::getNext(ORDER &anOrder){
-	return SUCCESS;
+	return myIO.getNext(anOrder);
+
 }
 
 void Waiter::beWaiter() {
+
 }
 

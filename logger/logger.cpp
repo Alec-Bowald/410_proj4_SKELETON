@@ -13,8 +13,10 @@ void Logger::clearlogfile() {
 	myFile.open(filename, std::fstream::trunc);
 
 	//close file
-	if (myFile.is_open())
+	if (myFile.is_open()) {
+		myFile.clear();
 		myFile.close();
+	}
 }
 
 void Logger::log(std::string data) {
