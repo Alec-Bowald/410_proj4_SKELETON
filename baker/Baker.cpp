@@ -1,11 +1,15 @@
 #include <mutex>
+#include <condition_variable>
 //#include <lock_quard>
 
 #include "../includes/baker.h"
 #include "../includes/PRINT.h"
 #include "../includes/constants.h"
+
 using namespace std;
 
+mutex m;
+condition_variable cv;
 Baker::Baker(int id) :
 		id(id) {
 	PRINT1(id);
@@ -16,13 +20,18 @@ Baker::~Baker() {
 
 void Baker::bake_and_box(ORDER &anOrder) {
 	DONUT newDonut;
-	for (int i = 0; i < anOrder.number_donuts; i++) {
-		anOrder.boxes.at(anOrder.order_number).addDonut(newDonut);
-		if(anOrder.boxes.at(anOrder.order_number).size() == 12) {
-			anOrder.boxes.at(anOrder.order_number + 1).addDonut(newDonut);
-		}
+	int orderDone = 0;
+	int numberBoxes = anOrder.order_number;
 
+	unique_lock<mutex> lck(m);
+	while (orderDone != anOrder.number_donuts) {
+		anOrder.boxes.at(numberBoxes).addDonut(newDonut);
+		if(anOrder.boxes.at(numberBoxes).size() == 12) {
+			numberBoxes += 1;
+		}
+		orderDone += 1;
 	}
+
 
 }
 
