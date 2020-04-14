@@ -2,6 +2,7 @@
 #include "stdlib.h"
 
 #include "../includes/waiter.h"
+#include "../includes/externs.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ int Waiter::getNext(ORDER &anOrder){
 }
 
 void Waiter::beWaiter() {
-
+	ORDER newOrder;
+	getNext(newOrder);
+	order_in_Q.push(newOrder);
 }
 
