@@ -1,3 +1,7 @@
+/*
+ * Authors: Jackie Brown, Alec Bowald
+ */
+
 #include "../includes/logger.h"
 using namespace std;
 

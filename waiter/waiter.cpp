@@ -1,3 +1,7 @@
+/*
+ * Authors: Jackie Brown, Alec Bowald
+ */
+
 #include <string>
 #include "stdlib.h"
 
@@ -22,7 +26,6 @@ int Waiter::getNext(ORDER &anOrder){
 void Waiter::beWaiter() {
 	ORDER newOrder;
 	while(getNext(newOrder) != NO_ORDERS){
-		getNext(newOrder);
 		order_in_Q.push(newOrder);
 		cv_order_inQ.notify_all();
 	}

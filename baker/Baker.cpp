@@ -1,3 +1,8 @@
+/*
+ * Authors: Jackie Brown, Alec Bowald
+ */
+
+
 #include <mutex>
 #include <condition_variable>
 //#include <lock_quard>
@@ -22,13 +27,14 @@ Baker::~Baker() {
 void Baker::bake_and_box(ORDER &anOrder) {
 	int orderDone = 0;
 	int numberBoxes = 0;
-	Box firstBox = new Box();
-	anOrder.boxes
+	Box firstBox;
+	anOrder.boxes.push_back(firstBox);
 
 	while (orderDone != anOrder.number_donuts) {
 		DONUT newDonut;
 		if (anOrder.boxes.at(numberBoxes).size() == 12) {
-			anOrder.boxes.push_back(new Box());
+			Box newBox;
+			anOrder.boxes.push_back(newBox);
 			numberBoxes += 1;
 		}
 		anOrder.boxes.at(numberBoxes).addDonut(newDonut);
