@@ -20,13 +20,15 @@ Baker::~Baker() {
 }
 
 void Baker::bake_and_box(ORDER &anOrder) {
-	DONUT newDonut;
 	int orderDone = 0;
-	int numberBoxes = anOrder.order_number;
+	int numberBoxes = 0;
+	Box firstBox = new Box();
+	anOrder.boxes
 
-	unique_lock<mutex> lck(m);
 	while (orderDone != anOrder.number_donuts) {
+		DONUT newDonut;
 		if (anOrder.boxes.at(numberBoxes).size() == 12) {
+			anOrder.boxes.push_back(new Box());
 			numberBoxes += 1;
 		}
 		anOrder.boxes.at(numberBoxes).addDonut(newDonut);
